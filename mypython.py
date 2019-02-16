@@ -34,9 +34,11 @@ FILENAMES = ["The", "Three", "Migos"]
 # Output: NA
 # Returns: ASCII character
 #######################################
-def writeToFile(fileName, asciiChar):
+def writeToFile(fileName, asciiChar, index):
 	file = open(fileName, "a+")
 	file.write(asciiChar)
+	if(index == 9):
+		file.write("\n")
 	file.close
 
 ############## FUNCTION ###############
@@ -66,21 +68,7 @@ def getRandomASCIIs(fileName):
 		value = random.randint(97, 122)	
 		print("Random value" + str(i+1) + " = " + str(value))
 		asciiChar = convertNumToASCII(value)
-		writeToFile(fileName, asciiChar)
-
-############## FUNCTION ###############
-# Name: createFile 
-# Description: Creates 3 files and 
-# writes the result of the ____ to each
-# of the three files.
-# Input: Name of file to create
-# Output: NA
-# Returns: NA
-#######################################
-def createFile(fileName):
-	file = open(fileName, "w+")
-	file.write("This is the first line of the file\n")
-	file.close()
+		writeToFile(fileName, asciiChar, i)
 
 	
 def main():
@@ -88,10 +76,8 @@ def main():
 	
 	for i in range(3):
 		getRandomASCIIs(FILENAMES[i])
+
+
 	
-#	for i in range(3):
-#		createFile("fileName" + str(i))
-
-
 if __name__ == "__main__":
 	main()
