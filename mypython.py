@@ -23,33 +23,74 @@
 #
 ######################################################
 import random
+FILENAMES = ["The", "Three", "Migos"]
 
+############## FUNCTION ###############
+# Name: convertNumToASCII
+# Description: Takes an integer input
+# parameter and converts that value 
+# into the ASCII symbol.
+# Input: Integer value
+# Output: NA
+# Returns: ASCII character
+#######################################
+def writeToFile(fileName, asciiChar):
+	file = open(fileName, "a+")
+	file.write(asciiChar)
+	file.close
+
+############## FUNCTION ###############
+# Name: convertNumToASCII
+# Description: Takes an integer input
+# parameter and converts that value 
+# into the ASCII symbol.
+# Input: Integer value
+# Output: NA
+# Returns: ASCII character
+#######################################
 def convertNumToASCII(number):
 	asciiChar = chr(number)
 	print("NUMBER: " + str(number) + "\nASCII: " + str(asciiChar) + "\n")
+	return asciiChar
 
-
-def getRandomNum():
-	random.seed()
+############## FUNCTION ###############
+# Name: getRandomASCIIs 
+# Description: Generates 10 randomly
+# selected integers beteween 97 - 122.
+# Input: NA
+# Output: NA
+# Returns: Random integer 97 - 122
+#######################################
+def getRandomASCIIs(fileName):
 	for i in range(10):
 		value = random.randint(97, 122)	
 		print("Random value" + str(i+1) + " = " + str(value))
-		convertNumToASCII(value)
+		asciiChar = convertNumToASCII(value)
+		writeToFile(fileName, asciiChar)
 
-
+############## FUNCTION ###############
+# Name: createFile 
+# Description: Creates 3 files and 
+# writes the result of the ____ to each
+# of the three files.
+# Input: Name of file to create
+# Output: NA
+# Returns: NA
+#######################################
 def createFile(fileName):
-	file = open(fileName + ".txt", "w+")
+	file = open(fileName, "w+")
 	file.write("This is the first line of the file\n")
 	file.close()
 
 	
 def main():
-	fileName1 = "logfile1"
-	fileName2 = "logfile2"
-	fileName3 = "logfile3"
-	getRandomNum()	
+	random.seed()
+	
 	for i in range(3):
-		createFile("fileName" + str(i))
+		getRandomASCIIs(FILENAMES[i])
+	
+#	for i in range(3):
+#		createFile("fileName" + str(i))
 
 
 if __name__ == "__main__":
