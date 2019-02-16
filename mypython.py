@@ -22,3 +22,18 @@
 # final line of output.   
 #
 ######################################################
+def createFile(fileName):
+	file = open(fileName + ".txt", "w+")
+	file.write("This is the first line of the file\n")
+	file.close()
+	
+def main():
+	fileName1 = "logfile1"
+	fileName2 = "logfile2"
+	fileName3 = "logfile3"
+	
+	for i in range(3):
+		createFile("fileName" + str(i))
+
+if __name__ == "__main__":
+	main()
