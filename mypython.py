@@ -23,16 +23,35 @@
 #
 ######################################################
 import random
+import sys
+
 FILENAMES = ["The", "Three", "Migos"]
 
 ############## FUNCTION ###############
-# Name: convertNumToASCII
-# Description: Takes an integer input
-# parameter and converts that value 
-# into the ASCII symbol.
-# Input: Integer value
+# Name: readFiles
+# Description: Opens each of the global
+# file names and prints the file contents
+# to the terminal.
+# Input: NA
+# Output: ASCII characters from 3 files
+# Returns: NA
+#######################################
+def readFiles():
+	for i in range(3):
+		sys.stdout.flush()
+		print(open(FILENAMES[i]).read(), end="")
+		
+
+############## FUNCTION ###############
+# Name: writeToFile
+# Description: Appends or creates file
+# if one doesn't already exists each
+# ascii character to the file and if
+# the last index is reached appends a 
+# newline character.
+# Input: (3) - file name, ascii, index
 # Output: NA
-# Returns: ASCII character
+# Returns: NA
 #######################################
 def writeToFile(fileName, asciiChar, index):
 	file = open(fileName, "a+")
@@ -52,7 +71,6 @@ def writeToFile(fileName, asciiChar, index):
 #######################################
 def convertNumToASCII(number):
 	asciiChar = chr(number)
-	print("NUMBER: " + str(number) + "\nASCII: " + str(asciiChar) + "\n")
 	return asciiChar
 
 ############## FUNCTION ###############
@@ -66,7 +84,6 @@ def convertNumToASCII(number):
 def getRandomASCIIs(fileName):
 	for i in range(10):
 		value = random.randint(97, 122)	
-		print("Random value" + str(i+1) + " = " + str(value))
 		asciiChar = convertNumToASCII(value)
 		writeToFile(fileName, asciiChar, i)
 
@@ -76,7 +93,8 @@ def main():
 	
 	for i in range(3):
 		getRandomASCIIs(FILENAMES[i])
-
+			
+	readFiles()
 
 	
 if __name__ == "__main__":
