@@ -1,30 +1,33 @@
 #######################################################
 # Name: Travis Laxson
-# Date: 15 Feb 2019
+# Date: 16 Feb 2019
 # ONID: laxsont
 # Email: laxsont@oregonstate.edu
 # Description: Python script file that
 # performs the follwing actions:
+#
 # 	1) Create 3 files in directory
-#	2) Each file contains 10 random chars from
-#	   the lowercase alphabet, no spaces
-#	3) Final, eleventh char of each file is
+#	2) Each file will contain 10 randomly
+#	   selected lowercase letters, no spaces
+#	3) The eleventh char of each file is
 #	   a new line character
-#	4) Generate random integer values and 
-#  	   perform basic arithmetic on them
+#	4) Displays two random integers between
+#	   1-42 inclusive and then performs 
+#	   multiplication on them before
+#	   displaying the product on final line
 # 
-# Upon execution the script will first print 
-# out the contents of the 3 created files. Then
-# the values of the two randomly generated numbers 
+# Upon execution, the script will begin printing
+# the contents of the 3 created files. Next, the 
+# values of the two randomly generated numbers 
 # separated by newlines will display. Lastly, the 
 # script will calculate and display the product of
 # the two randomly generated integer values on the
 # final line of output.   
 #
 ######################################################
-import random
-import sys
+import random as r
 
+# Hard coded file names
 FILENAMES = ["The", "Three", "Migos"]
 
 ############## FUNCTION ###############
@@ -38,9 +41,10 @@ FILENAMES = ["The", "Three", "Migos"]
 #######################################
 def readFiles():
 	for i in range(3):
-		sys.stdout.flush()
-		print(open(FILENAMES[i]).read(), end="")
-		
+		file = open(FILENAMES[i], "r")
+		print(file.read(), end="")
+		file.close()		
+
 
 ############## FUNCTION ###############
 # Name: writeToFile
@@ -60,18 +64,6 @@ def writeToFile(fileName, asciiChar, index):
 		file.write("\n")
 	file.close
 
-############## FUNCTION ###############
-# Name: convertNumToASCII
-# Description: Takes an integer input
-# parameter and converts that value 
-# into the ASCII symbol.
-# Input: Integer value
-# Output: NA
-# Returns: ASCII character
-#######################################
-def convertNumToASCII(number):
-	asciiChar = chr(number)
-	return asciiChar
 
 ############## FUNCTION ###############
 # Name: getRandomASCIIs 
@@ -83,19 +75,51 @@ def convertNumToASCII(number):
 #######################################
 def getRandomASCIIs(fileName):
 	for i in range(10):
-		value = random.randint(97, 122)	
-		asciiChar = convertNumToASCII(value)
-		writeToFile(fileName, asciiChar, i)
+		value = r.randint(97, 122)	
+		writeToFile(fileName, chr(value), i)
 
-	
-def main():
-	random.seed()
-	
+
+############## FUNCTION ###############
+# Name: getRandomProduct 
+# Description: Generates 2 random int
+# values from 1 to 42, inclusive, prints
+# them to the console, and then performs
+# multiplication before printing the
+# product on the third line.
+# Input: NA
+# Output: NA
+# Returns: Random integer 97 - 122
+#######################################
+def getRandomProduct():
+	value1 = r.randint(1, 42)
+	value2 = r.randint(1, 42)
+	product = value1 * value2
+	print(value1)
+	print(value2)
+	print(product)
+
+
+############## FUNCTION ###############
+# Name: executeScript 
+# Description: Contains all of the logic
+# to run the script.
+# Input: NA
+# Output: NA
+# Returns: NA
+#######################################
+def executeScript():
+	r.seed()
 	for i in range(3):
 		getRandomASCIIs(FILENAMES[i])
-			
 	readFiles()
+	getRandomProduct()
 
-	
+
+# MAIN FUNCTION #	
+def main():
+	executeScript()
+
+
+# RUN PROGRAM #
 if __name__ == "__main__":
 	main()
