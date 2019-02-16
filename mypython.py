@@ -24,6 +24,13 @@
 # the two randomly generated integer values on the
 # final line of output.   
 #
+# Sources:
+# https://www.guru99.com/reading-and-writing-files-in-python.html
+# https://www.tutorialspoint.com/python/python_functions.htm
+# https://stackoverflow.com/questions/3996904/generate-random-integers-between-0-and-9
+# https://simple.wikipedia.org/wiki/ASCII#/media/File:ASCII-Table-wide.svg
+# https://stackoverflow.com/questions/493386/how-to-print-without-newline-or-space
+# https://docs.python.org/3/library/random.html
 ######################################################
 import random as r
 
@@ -69,6 +76,8 @@ def writeToFile(fileName, asciiChar, index):
 # Name: getRandomASCIIs 
 # Description: Generates 10 randomly
 # selected integers beteween 97 - 122.
+# and converts them to ascii to pass
+# to the write file function.
 # Input: NA
 # Output: NA
 # Returns: Random integer 97 - 122
