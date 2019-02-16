@@ -24,13 +24,17 @@
 ######################################################
 import random
 
+def convertNumToASCII(number):
+	asciiChar = chr(number)
+	print("NUMBER: " + str(number) + "\nASCII: " + str(asciiChar) + "\n")
+
 
 def getRandomNum():
-	print("Seeding random\n")
 	random.seed()
 	for i in range(10):
-		value = random.randrange(0, 20)	
-		print("Random value" + str(i) + " = " + str(value))
+		value = random.randint(97, 122)	
+		print("Random value" + str(i+1) + " = " + str(value))
+		convertNumToASCII(value)
 
 
 def createFile(fileName):
